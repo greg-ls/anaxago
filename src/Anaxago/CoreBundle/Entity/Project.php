@@ -186,5 +186,22 @@ class Project
     {
         return $this->funded;
     }
+
+    /**
+     * Get funded
+     *
+     * @return array
+     */
+    public function getDataInArray()
+    {
+        return [
+            'id' => $this->getId(),
+            'slug' => $this->getSlug(),
+            'title' => $this->getTitle(),
+            'description' => $this->getDescription(),
+            'founding' => $this->getFunding(),
+            'founded' => $this->getFunded()
+        ];
+    }
 }
 
