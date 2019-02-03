@@ -3,8 +3,11 @@ namespace Anaxago\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+class InterestException extends \Exception
+{}
+
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Anaxago\CoreBundle\Repository\InterestRepository")
  * @ORM\Table(name="interest")
  */
 class Interest
@@ -17,7 +20,7 @@ class Interest
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-    
+
     /**
      * @var int
      * @ORM\ManyToMany(targetEntity="User")
@@ -114,6 +117,9 @@ class Interest
      */
     public function setAmount($amount)
     {
+        if ($amount <= 0) {
+            throw new InterestException("Amount must be > 0", 1);
+        }
         $this->amount = $amount;
 
         return $this;

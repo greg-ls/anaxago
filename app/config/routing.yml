@@ -13,6 +13,17 @@ anaxago_core_registration:
     path: /register
     defaults: { _controller: AnaxagoCoreBundle:Security:registration }
 
-api-projects:
+api_projects:
     path: /api/projects
     defaults: { _controller: AnaxagoCoreBundle:Api:getProjects }
+    methods:    [GET]
+
+api_new_interest:
+    path: /api/projects/interest
+    defaults: { _controller: AnaxagoCoreBundle:Api:setInterest }
+    methods:    [POST]
+
+api_get_interest:
+    path: /api/interest
+    defaults: { _controller: AnaxagoCoreBundle:Api:getInterest }
+    methods:    [GET]
