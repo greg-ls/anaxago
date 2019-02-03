@@ -26,6 +26,13 @@ services:
         public: true
         arguments: ['@doctrine.orm.entity_manager', '@doctrine']
 
+    Anaxago\CoreBundle\Manager\ProjectManager:
+        public: true
+        arguments: ['@doctrine.orm.entity_manager', '@doctrine']
+
+    #Anaxago\CoreBundle\Listener\Doctrine\ProjectFoundedListener:
+    #    arguments: ['@Anaxago\CoreBundle\Manager\InterestManager']
+
     # controllers are imported separately to make sure they're public
     # and have a tag that allows actions to type-hint services
     Anaxago\CoreBundle\Controller\:
