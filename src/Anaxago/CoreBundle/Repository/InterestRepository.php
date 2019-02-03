@@ -10,6 +10,12 @@ namespace Anaxago\CoreBundle\Repository;
  */
 class InterestRepository extends \Doctrine\ORM\EntityRepository
 {
+	/**
+	 * Returns all interest from a user
+     * @param integer $id
+     *
+     * @return array
+     */
 	public function findAllByUser($id)
     {
     	$qb = $this->getEntityManager()->createQueryBuilder();

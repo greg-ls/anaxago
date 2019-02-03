@@ -18,6 +18,7 @@ use Symfony\Component\HttpFoundation\Request;
 class ApiController extends Controller
 {
     /**
+     * Return the list of all projects
      * @param EntityManagerInterface $entityManager
      *
      * @return JsonResponse
@@ -34,12 +35,14 @@ class ApiController extends Controller
     }
 
     /**
+     * Create one interest for a user
      * @param EntityManagerInterface $entityManager
      *
      * @return JsonResponse
      */
     public function setInterestAction(Request $request, EntityManagerInterface $entityManager): JsonResponse
     {
+        //only for authenticated user
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
         $user = $this->getUser();
@@ -59,12 +62,14 @@ class ApiController extends Controller
     }
 
     /**
+     * Return the list of all interests from a user
      * @param EntityManagerInterface $entityManager
      *
      * @return JsonResponse
      */
     public function getInterestAction(EntityManagerInterface $entityManager): JsonResponse
     {
+        //only for authenticated user
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
         $user = $this->getUser();
