@@ -9,6 +9,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class ApiController
@@ -54,11 +55,13 @@ class ApiController extends Controller
                                             'amount' => $request->request->get('amount')]);
 
             $response = 'Interest created';
+            $code = Response::HTTP_OK;
         } catch (\Exception $e) {
             $response = $e->getMessage();
+            $code = Response::HTTP_BAD_REQUEST;
         }
 
-        return new JsonResponse($response);
+        return new JsonResponse($response, $code);
     }
 
     /**
@@ -77,10 +80,12 @@ class ApiController extends Controller
 
         try {
             $response = $interestManager->getInterestByUser($user->getId());
+            $code = Response::HTTP_OK;
         } catch (\Exception $e) {
             $response = $e->getMessage();
+            $code = Response::HTTP_BAD_REQUEST;
         }
 
-        return new JsonResponse($response);
+        return new JsonResponse($response, $code);
     }
 }
